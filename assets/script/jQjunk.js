@@ -4,9 +4,9 @@ function removePlayer(e) {
     var btn = $(e.target);
     var card = btn.closest('.playerCard');
     var myID = parseInt(card.attr('id')) - 1;
-    myRoster.forEach(function (player) {
+    myRoster.forEach(function (player, i) {
         if (player.id === myID) {
-            myRoster.splice(player.id, 1);
+            myRoster.splice(i, 1);
         }
     });
     card.remove();
@@ -24,5 +24,5 @@ function addPlayer(e) {
     drawRoster();
 }
 
-removeButton.click(removePlayer);
+$('.player-roster').on('click', '.btn-danger', removePlayer);
 submitButton.click(addPlayer);

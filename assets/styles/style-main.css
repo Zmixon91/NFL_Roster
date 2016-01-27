@@ -1,0 +1,9 @@
+.playerCard {
+    display: inline-block;
+    border: 1px solid black;
+    text-align: center;
+}
+.player-form {
+    margin-left: 10px;
+    margin-right: 10px;
+}

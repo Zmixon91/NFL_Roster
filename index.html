@@ -8,9 +8,42 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 </head>
 
-<body ng-controller="RosterController as rs">
+<body ng-controller="RosterController as rc">
 
-{{rs.test}}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">My Team Roster</div>
+            <div class="panel-body">
+                <div class="container player-roster" ng-repeat="player in rc.myRoster track by $index">
+                    {{player.playerName}}
+                </div>
+                <div class="row player-form">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-plus-sign"></span> Add Player</div>
+                        <div class="panel-body">
+                            <form class="form" ng-submit="rc.addPlayer(rc.newPlayer)">
+                                <div class="form-group">
+                                    <label for="player-name">Player Name</label>
+                                    <input type="text" class="form-control" placeholder="Player Name" ng-model="rc.newPlayer.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-position">Player Position</label>
+                                    <input type="text" class="form-control" placeholder="Player Position" ng-model="rc.newPlayer.position">
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-number">Player Number</label>
+                                    <input type="text" class="form-control" placeholder="Player Number" ng-model="rc.newPlayer.number">
+                                </div>
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> Add To Team</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--JS Components-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>

@@ -1,31 +1,45 @@
 // Roster var
 var myRoster = [];
-var id = 0;
-
 // Player Constructor
 function Player(name, position, playerNumber) {
-    this.id = id++
     this.name = name;
     this.position = position;
     this.playerNumber = playerNumber;
-    this.card = '<div class="playerCard" id="' + id + '"><input type="button" id="1" class="btn btn-danger" value="Remove"><div><img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt=""><p>' + name + '</p><p>' + position + '</p><p>' + playerNumber + '</p></div></div>';
+    drawRoster();
 };
+
+function createCard(player){
+    var card = $('<div class="playerCard">');
+    var myButton = $('<input type="button" class="btn btn-danger" value="Remove">');
+    myButton.click(function () {
+        debugger;
+        card.remove();
+        myRoster.splice(myRoster.indexOf(player), 1);
+    });
+    
+    card.append(myButton);
+    card.append('<div><img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt=""><p>' + player.name + '</p><p>' + player.position + '</p><p>' + player.playerNumber + '</p></div></div>');
+    return card;
+}
+
 // Draw roster to screen
 function drawRoster() {
     $('.player-roster').empty();
     myRoster.forEach(function (player) {
-        $('.player-roster').append(player.card);
+        $('.player-roster').append(createCard(player));
     });
 };
-
-/*
-<div class="player-card">
-    <input type="button" class="btn btn-danger" value="Remove">
-    <div>
-        <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="">
-        <p>Player Name</p>
-        <p>Position</p>
-        <p>#27</p>
-    </div>
-</div>
-*/
+// jQjunk
+// HTML vars
+var submitButton = jQuery('#mySubmit');
+// Add player to page and roster
+function addPlayer(e) {
+    e.preventDefault();
+    var playerName = $("[name='playerName']").val();
+    var playerPosition = $("[name='playerPosition']").val();
+    var playerNumber = $("[name='playerNumber']").val();
+    myRoster.push(new Player(playerName, playerPosition, playerNumber));
+    drawRoster();
+}
+// Page interaction
+submitButton.click(addPlayer);

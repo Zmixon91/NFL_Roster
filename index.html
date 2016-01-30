@@ -19,11 +19,10 @@
                     <div class="playerCard" ng-repeat="player in rc.myRoster track by $index">
                         <input type="button " class="btn btn-danger" value="Remove" ng-click="rc.removePlayer($index)">
                         <div>
-                            <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/
-                    " alt=" ">
-                            <p>{{player.playerName}}</p>
-                            <p>{{player.playerPosition}}</p>
-                            <p>{{player.playerNumber}}</p>
+                            <img src="{{player.photo}}" height="170" width="170" alt=" ">
+                            <p>{{player.fullname}}</p>
+                            <p>{{player.position}}</p>
+                            <p>{{player.jersey}}</p>
                         </div>
                     </div>
                 </div>
@@ -53,6 +52,9 @@
                 </div>
             </div>
         </div>
+        <button ng-click="rc.getAPI()">Get NFL Roster (please only click once)</button>
+        <button ng-click="rc.sortAPI()">Sort Roster</button>
+        <button ng-click="rc.showTeam('TEN')">Find TEN</button>
     </div>
 
     <!--JS Components-->

@@ -1,0 +1,9 @@
+<div class="playerCard" ng-repeat="player in league.myRoster track by $index">
+    <input type="button " class="btn btn-danger" value="Remove" ng-click="rc.removePlayer($index)">
+    <div>
+        <img src="{{player.photo}}" height="170" width="170" alt=" ">
+        <p>{{player.fullname}}</p>
+        <p>{{player.position}}</p>
+        <p>{{player.jersey}}</p>
+    </div>
+</div>

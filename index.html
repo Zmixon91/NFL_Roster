@@ -9,24 +9,16 @@
     <link rel="stylesheet" href="assets/styles/style-main.css">
 </head>
 
-<body ng-controller="RosterController as rc">
+<body>
 
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">My Team Roster</div>
-            <div class="panel-body">
+            <div class="panel-body" ng-controller="RosterController as rc">
                 <div class="container player-roster">
-                    <div class="playerCard" ng-repeat="player in rc.myRoster track by $index">
-                        <input type="button " class="btn btn-danger" value="Remove" ng-click="rc.removePlayer($index)">
-                        <div>
-                            <img src="{{player.photo}}" height="170" width="170" alt=" ">
-                            <p>{{player.fullname}}</p>
-                            <p>{{player.position}}</p>
-                            <p>{{player.jersey}}</p>
-                        </div>
-                    </div>
+                    <player-card></player-card>
                 </div>
-                <div class="row player-form ">
+                <div class="row player-form">
                     <div class="panel panel-primary ">
                         <div class="panel-heading "><span class="glyphicon glyphicon-plus-sign "></span> Add Player</div>
                         <div class="panel-body ">
@@ -52,9 +44,12 @@
                 </div>
             </div>
         </div>
-        <button ng-click="rc.getAPI()">Get NFL Roster (please only click once)</button>
-        <button ng-click="rc.sortAPI()">Sort Roster</button>
-        <button ng-click="rc.showTeam('TEN')">Find TEN</button>
+        <div ng-controller="RosterController as rc">
+            <button class="btn btn-default" ng-click="rc.getAPI()">Get NFL Roster (please only click once)</button>
+            <button class="btn btn-default" ng-click="rc.sortAPI()">Sort Roster</button>
+            <button class="btn btn-default" ng-click="rc.showTeam('TEN')">Find TEN</button>
+            <button class="btn btn-danger" ng-click="rc.clearRoster()">Clear All</button>
+        </div>
     </div>
 
     <!--JS Components-->
@@ -63,7 +58,7 @@
     <script src="bower_components/angular/angular.min.js "></script>
     <!--Custom Application-->
     <script src="app/app.js "></script>
-    <script src="app/components/roster/rosterController.js "></script>
+    <script src="app/components/roster/rosterModule.js "></script>
 </body>
 
 </html>

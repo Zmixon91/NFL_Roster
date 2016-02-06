@@ -4,6 +4,7 @@ app.controller('RosterController', function ($scope) {
     // Define Controller Vars
     $scope.nFLRoster = [];
     $scope.myRoster = [];
+    $scope.teams = [];
     // Add Player to Roster
     $scope.addPlayer = function (player) {
         var defaultPhoto = 'https://auth.cbssports.com/images/players/unknown-player-170x170.png';
@@ -21,6 +22,8 @@ app.controller('RosterController', function ($scope) {
         $.get(apiUrl).success(function (res) {
             var jsonToObj = JSON.parse(res);
             $scope.nFLRoster = jsonToObj.body.players;
+            $scope.sortAPI();
+            $scope.findTeams();
         })
     }
 
@@ -44,6 +47,11 @@ app.controller('RosterController', function ($scope) {
         console.log($scope.nFLRoster.length);
     }
 
+    $scope.findTeams = function () {
+        $scope.teams = $scope.nFLRoster.map(function (obj) { return obj.pro_team; });
+        $scope.teams = $scope.teams.filter(function (v, i) { return $scope.teams.indexOf(v) == i; });
+    };
+
     $scope.showTeam = function (filt) {
         // Filter to a specific team
         function filterTeam(obj) {
@@ -51,7 +59,10 @@ app.controller('RosterController', function ($scope) {
                 return true;
             }
         }
-        $scope.myRoster = $scope.nFLRoster.filter(filterTeam);
+        $scope.temp = $scope.nFLRoster.filter(filterTeam);
+        for (var player in $scope.temp) {
+            $scope.myRoster.push($scope.temp[player]);
+        };
         console.log($scope.myRoster.length);
     }
     // Clear the Roster
@@ -59,6 +70,9 @@ app.controller('RosterController', function ($scope) {
         $scope.myRoster = [];
         console.log($scope.myRoster.length);
     }
+
+    $scope.getAPI();
+
 
 });
 app.directive('playerCard', function () {

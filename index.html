@@ -35,24 +35,22 @@
                                     <label for="player-number ">Player Number</label>
                                     <input type="text " class="form-control " placeholder="Player Number " ng-model="newPlayer.number ">
                                 </div>
-                                <div class="btn-group ">
+                                <div class="btn-group">
                                     <button type="submit " class="btn btn-default "><span class="glyphicon glyphicon-plus-sign "></span> Add To Team</button>
+                                    <span class="btn btn-warning" ng-hide="teams.length > 0">
+                                        Loading...
+                                    </span>
+                                    <select ng-show="teams.length > 0" class="btn btn-default" ng-model="selectedTeam">
+                                        <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
+                                    </select>
+                                    <button ng-show="teams.length > 0" class="btn btn-default" ng-click="showTeam(selectedTeam)">Add {{selectedTeam}}</button>
+                                    <button class="btn btn-danger" ng-click="clearRoster()">Clear All</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div ng-hide="teams.length > 0">
-            <p>Loading...</p>
-        </div>
-        <div ng-show="teams.length > 0">
-            <select ng-model="selectedTeam">
-                <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
-            </select>
-            <button class="btn btn-default" ng-click="showTeam(selectedTeam)">Find {{selectedTeam}}</button>
-            <button class="btn btn-danger" ng-click="clearRoster()">Clear All</button>
         </div>
         <!--<div>
             <div class="container player-roster">

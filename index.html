@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="assets/styles/style-main.css">
 </head>
 
-<body>
+<body ng-controller="RosterController">
 
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">My Team Roster</div>
-            <div class="panel-body" ng-controller="RosterController as rc">
+            <div class="panel-body">
                 <div class="container player-roster">
                     <player-card></player-card>
                 </div>
@@ -22,18 +22,18 @@
                     <div class="panel panel-primary ">
                         <div class="panel-heading "><span class="glyphicon glyphicon-plus-sign "></span> Add Player</div>
                         <div class="panel-body ">
-                            <form class="form " ng-submit="rc.addPlayer(rc.newPlayer) ">
+                            <form class="form " ng-submit="addPlayer(rc.newPlayer) ">
                                 <div class="form-group ">
                                     <label for="player-name ">Player Name</label>
-                                    <input type="text " class="form-control " placeholder="Player Name " ng-model="rc.newPlayer.name ">
+                                    <input type="text " class="form-control " placeholder="Player Name " ng-model="newPlayer.name ">
                                 </div>
                                 <div class="form-group ">
                                     <label for="player-position ">Player Position</label>
-                                    <input type="text " class="form-control " placeholder="Player Position " ng-model="rc.newPlayer.position ">
+                                    <input type="text " class="form-control " placeholder="Player Position " ng-model="newPlayer.position ">
                                 </div>
                                 <div class="form-group ">
                                     <label for="player-number ">Player Number</label>
-                                    <input type="text " class="form-control " placeholder="Player Number " ng-model="rc.newPlayer.number ">
+                                    <input type="text " class="form-control " placeholder="Player Number " ng-model="newPlayer.number ">
                                 </div>
                                 <div class="btn-group ">
                                     <button type="submit " class="btn btn-default "><span class="glyphicon glyphicon-plus-sign "></span> Add To Team</button>
@@ -44,11 +44,11 @@
                 </div>
             </div>
         </div>
-        <div ng-controller="RosterController as rc">
-            <button class="btn btn-default" ng-click="rc.getAPI()">Get NFL Roster (please only click once)</button>
-            <button class="btn btn-default" ng-click="rc.sortAPI()">Sort Roster</button>
-            <button class="btn btn-default" ng-click="rc.showTeam('TEN')">Find TEN</button>
-            <button class="btn btn-danger" ng-click="rc.clearRoster()">Clear All</button>
+        <div>
+            <button class="btn btn-default" ng-click="getAPI()">Get NFL Roster (please only click once)</button>
+            <button class="btn btn-default" ng-click="sortAPI()">Sort Roster</button>
+            <button class="btn btn-default" ng-click="showTeam('TEN')">Find TEN</button>
+            <button class="btn btn-danger" ng-click="clearRoster()">Clear All</button>
         </div>
     </div>
 
